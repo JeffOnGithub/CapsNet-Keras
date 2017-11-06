@@ -149,7 +149,14 @@ def test(model, data):
 
 def load_mnist():
     # the data, shuffled and split between train and test sets
-    from keras.datasets import mnist
+    #Choose between MNIST as by paper or use the Fashion MNIST set
+    if args.dataset is 'mnist':
+        from keras.datasets import mnist
+    elif args.dataset is 'fashion_mnist':
+        from keras.datasets import fashion_mnist as mnist
+    else:
+        raise SystemExit("Invalid dataset selected. Please use mnist or fashion_mnist as argument")
+        
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
 
     x_train = x_train.reshape(-1, 28, 28, 1).astype('float32') / 255.
@@ -179,6 +186,7 @@ if __name__ == "__main__":
     parser.add_argument('--is_training', default=1, type=int)
     parser.add_argument('--weights', default=None)
     parser.add_argument('--lr', default=0.001, type=float)
+    parser.add_argument('--dataset', default='mnist') # mnist or fashion_mnist
     args = parser.parse_args()
     print(args)
     if not os.path.exists(args.save_dir):
