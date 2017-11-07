@@ -5,11 +5,7 @@ Switched the original project to Fashion MNIST dataset to see how capsule networ
 
 **Reconstruction result**  
 
-The result of CapsNet-v4 by launching   
-```
-python capsulenet.py --is_training 0 --weights result/trained_model.h5
-```
-Digits at top 5 rows are real images from MNIST and 
-digits at bottom are corresponding reconstructed images.
+Images at top 5 rows are real images from Fashion MNIST and 
+images at bottom are corresponding reconstructed images after 4 epochs.
 
 ![](real_and_recon.png)
